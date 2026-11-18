@@ -201,3 +201,5 @@ docker exec task-api-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
 Open `http://localhost:9090`, complete the first-time setup, install the Pipeline, Git, JUnit and Maven Integration plugins, then configure the JDK and Maven tools described above. The Jenkins controller image includes Java; configure a Java 17 tool named `jdk17` and Maven 3.9+ named `maven3` to match the Jenkinsfile.
+
+Automatic Jenkins CI trigger verification.
