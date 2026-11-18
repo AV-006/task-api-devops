@@ -1,0 +1,6 @@
+- name: Restart Task API
+  ansible.builtin.systemd_service:
+    name: task-api
+    state: restarted
+    enabled: true
+    daemon_reload: true
