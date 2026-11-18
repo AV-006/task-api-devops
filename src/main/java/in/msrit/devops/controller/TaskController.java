@@ -14,16 +14,23 @@ import java.util.Map;
 @RestController
 public class TaskController {
     private final TaskService taskService;
+    private final String appName;
+    private final String version;
+    private final String environment;
 
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
-    @GetMapping("/")
-    public Map<String, String> index(
+    public TaskController(
+            TaskService taskService,
             @org.springframework.beans.factory.annotation.Value("${app.name:Task API}") String appName,
             @org.springframework.beans.factory.annotation.Value("${app.version:1.0.0}") String version,
             @org.springframework.beans.factory.annotation.Value("${app.environment:local}") String environment) {
+        this.taskService = taskService;
+        this.appName = appName;
+        this.version = version;
+        this.environment = environment;
+    }
+
+    @GetMapping("/")
+    public Map<String, String> index() {
         return Map.of(
             "application", appName,
             "version", version,

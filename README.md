@@ -30,7 +30,7 @@ Default port: `8080`. Environment variables: `APP_PORT`, `APP_ENV`, `APP_VERSION
 - Git
 - JDK 17
 - Maven 3.9+
-- Jenkins with Pipeline, Git and JUnit plugins; configure tools named `jdk17` and `maven3`
+- Jenkins with Pipeline, Git, JUnit and Maven Integration plugins; configure tools named `jdk17` and `maven3`
 - Docker Desktop / Docker Engine
 - Ansible on Ubuntu / WSL2 (with systemd available on the managed host)
 - Minikube and kubectl
@@ -190,3 +190,14 @@ report/                Report assets and source diagrams
 - Ansible cannot connect or restart systemd: run inside an Ubuntu VM/WSL2 with systemd enabled; use `sudo systemctl status task-api`.
 - Kubernetes pods show `ImagePullBackOff`: confirm the image tag is `task-api:1.0.0` and run `minikube image load task-api:1.0.0`.
 - Pods are Running but not Ready: inspect `kubectl describe pod <pod>` and `kubectl logs <pod>`; readiness remains false until the Actuator endpoint responds.
+
+### Start Jenkins locally with Docker Compose
+
+The optional Compose file starts Jenkins with persistent storage:
+
+```powershell
+docker compose -f ci/docker-compose.yml up -d
+docker exec task-api-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+Open `http://localhost:9090`, complete the first-time setup, install the Pipeline, Git, JUnit and Maven Integration plugins, then configure the JDK and Maven tools described above. The Jenkins controller image includes Java; configure a Java 17 tool named `jdk17` and Maven 3.9+ named `maven3` to match the Jenkinsfile.
