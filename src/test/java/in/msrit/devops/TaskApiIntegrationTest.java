@@ -26,7 +26,7 @@ class TaskApiIntegrationTest {
     @Test
     void createTaskReturns201() throws Exception {
         mvc.perform(post("/tasks").contentType(MediaType.APPLICATION_JSON)
-                .content("{"title":"Write Ansible playbook"}"))
+                .content("{\"title\":\"Write Ansible playbook\"}"))
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.title").value("Write Ansible playbook"))
             .andExpect(jsonPath("$.completed").value(false));
@@ -35,7 +35,7 @@ class TaskApiIntegrationTest {
     @Test
     void blankTitleReturns400() throws Exception {
         mvc.perform(post("/tasks").contentType(MediaType.APPLICATION_JSON)
-                .content("{"title":"   "}"))
+                .content("{\"title\":\"   \"}"))
             .andExpect(status().isBadRequest());
     }
 
