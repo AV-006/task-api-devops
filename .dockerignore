@@ -1,0 +1,10 @@
+.git
+.github
+.idea
+.vscode
+target
+ansible
+k8s
+evidence
+*.pdf
+*.docx

@@ -1,0 +1,10 @@
+- name: Configure and deploy Task API on the managed Linux host
+  hosts: app_servers
+  become: true
+  gather_facts: true
+  vars:
+    app_port: 8080
+    app_environment: ansible
+    app_version: 1.0.0
+  roles:
+    - task_api

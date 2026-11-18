@@ -1,0 +1,9 @@
+app_name: task-api
+app_user: taskapi
+app_group: taskapi
+app_dir: /opt/task-api
+app_port: 8080
+app_environment: ansible
+app_version: 1.0.0
+java_package: openjdk-17-jre-headless
+app_jar_src: "{{ playbook_dir }}/../target/task-api.jar"
